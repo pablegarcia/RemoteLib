@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>es.bq.test</groupId>
+	<groupId>es.bq.remotelib</groupId>
 	<artifactId>RemoteLib</artifactId>
 	<version>0.1</version>
 	<packaging>apk</packaging>
@@ -11,46 +11,40 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<platform.version>4.1.1.4</platform.version>
-		<android.plugin.version>3.5.3</android.plugin.version>
+		<android.platform>16</android.platform>
+		
+		<android.version>4.1.1.4</android.version>
+		<android.plugin.version>3.6.0</android.plugin.version>
+		<dropbox.version>1.7.5</dropbox.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>${platform.version}</version>
-			<scope>provided</scope>
+			<version>${android.version}</version>
+			<scope>provided</scope> 
 		</dependency>
 		
 		<dependency>
 			<groupId>com.dropbox.core</groupId>
 			<artifactId>dropbox-core-sdk</artifactId>
-			<version>1.7.5</version>
+			<version>${dropbox.version}</version>
 		</dependency>
 	</dependencies>
 	
 	<build>
 		<finalName>${project.artifactId}</finalName>
-		
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-					<artifactId>android-maven-plugin</artifactId>
-					<version>${android.plugin.version}</version>
-					<extensions>true</extensions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		
+
 		<plugins>
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>
+				<version>${android.plugin.version}</version>
+				<extensions>true</extensions>
 				<configuration>
 					<sdk>
-						<platform>16</platform>
+						<platform>${android.platform}</platform>
 					</sdk>
 				</configuration>
 			</plugin>
