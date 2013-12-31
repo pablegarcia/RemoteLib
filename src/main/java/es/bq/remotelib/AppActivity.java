@@ -6,8 +6,11 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.dropbox.core.DbxEntry;
@@ -71,6 +74,17 @@ public class AppActivity extends Activity {
 
 		final ListView listview = (ListView) findViewById(R.id.booksListView);
 		listview.setAdapter(new BookAdapter(this, books));
+
+		listview.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> adapter, View view,
+					int position, long arg) {
+				ImageView cover = (ImageView) view.findViewById(R.id.bookCover);
+				int newVisibility = cover.getVisibility() == View.VISIBLE ? View.INVISIBLE
+						: View.VISIBLE;
+				cover.setVisibility(newVisibility);
+			}
+		});
 	}
 
 	/**

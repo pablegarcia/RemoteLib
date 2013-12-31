@@ -16,5 +16,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/ebookIcon" />
+    
+    <ImageView
+        android:id="@+id/bookCover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/bookCover"
+        android:src="@drawable/cover"/>
 
 </RelativeLayout>

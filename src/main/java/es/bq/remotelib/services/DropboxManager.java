@@ -39,21 +39,21 @@ public class DropboxManager {
 	public static List<DbxEntry> getAllBooks() {
 		List<DbxEntry> books = new ArrayList<DbxEntry>();
 
-		books.add(new DbxEntry.File("/book1.epub", "", false, 1000000, "13 kb",
+		books.add(new DbxEntry.File("/book1.epub", "", true, 1000000, "13 kb",
 				null, null, ""));
-		books.add(new DbxEntry.File("/book2.epub", "", false, 1000000, "13 kb",
+		books.add(new DbxEntry.File("/book2.epub", "", true, 1000000, "13 kb",
 				null, null, ""));
-		books.add(new DbxEntry.File("/book3.epub", "", false, 1000000, "13 kb",
+		books.add(new DbxEntry.File("/book3.epub", "", true, 1000000, "13 kb",
 				null, null, ""));
-		books.add(new DbxEntry.File("/book4.epub", "", false, 1000000, "13 kb",
+		books.add(new DbxEntry.File("/book4.epub", "", true, 1000000, "13 kb",
 				null, null, ""));
-		books.add(new DbxEntry.File("/book5.epub", "", false, 1000000, "13 kb",
+		books.add(new DbxEntry.File("/book5.epub", "", true, 1000000, "13 kb",
 				null, null, ""));
-		books.add(new DbxEntry.File("/book6.epub", "", false, 1000000, "13 kb",
+		books.add(new DbxEntry.File("/book6.epub", "", true, 1000000, "13 kb",
 				null, null, ""));
-		books.add(new DbxEntry.File("/book7.epub", "", false, 1000000, "13 kb",
+		books.add(new DbxEntry.File("/book7.epub", "", true, 1000000, "13 kb",
 				null, null, ""));
-		books.add(new DbxEntry.File("/book8.epub", "", false, 1000000, "13 kb",
+		books.add(new DbxEntry.File("/book8.epub", "", true, 1000000, "13 kb",
 				null, null, ""));
 
 		return books;

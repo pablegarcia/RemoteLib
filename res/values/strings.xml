@@ -11,5 +11,11 @@
 
     <!-- Books list strings -->
     <string name="ebookIcon">eBook Icon</string>
+    <string name="bookCover">eBook Cover</string>
+ 	<string name="books_sortable_prompt">Sort by</string>
+    <string-array name="books_sortable_arrays">
+        <item>Title</item>
+        <item>Date</item>
+    </string-array>
 
 </resources>
