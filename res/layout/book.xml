@@ -5,25 +5,37 @@
 
     <ImageView
         android:id="@+id/ebookIcon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:contentDescription="@string/ebookIcon"
         android:src="@drawable/ebook_icon" />
 
-    <TextView
-        android:id="@+id/bookTitle"
+    <LinearLayout
+        android:id="@+id/bookInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/ebookIcon" />
-    
+        android:layout_toRightOf="@id/ebookIcon"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/bookTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/bookDate"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/bookCover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/bookInfo"
         android:contentDescription="@string/bookCover"
-        android:src="@drawable/cover"/>
+        android:src="@drawable/cover"
+        android:visibility="invisible" />
 
 </RelativeLayout>

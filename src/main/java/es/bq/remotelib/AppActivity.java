@@ -8,22 +8,28 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.dropbox.core.DbxEntry;
 
 import es.bq.remotelib.adapter.BookAdapter;
+import es.bq.remotelib.comparator.BookComparator;
 import es.bq.remotelib.entity.Book;
 import es.bq.remotelib.services.DropboxManager;
+import es.bq.remotelib.type.BookSortBy;
 
 /**
  * 
  * @author Pablo Garcia
  */
 public class AppActivity extends Activity {
+
+	private ListView m_listview;
 
 	/**
 	 * Called when the activity is first created.
@@ -55,6 +61,8 @@ public class AppActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				showListOfBooks();
+				addListenerOnListViewOnItemClick();
+				addListenerOnSpinnerItemSelection();
 			}
 		});
 	}
@@ -68,14 +76,19 @@ public class AppActivity extends Activity {
 
 		DropboxManager.authenticate(emailEditText.getText().toString(),
 				passwordEditText.getText().toString());
-		List<Book> books = convertToBooks(DropboxManager.getAllBooks());
 
 		setContentView(R.layout.books_list);
+	}
 
-		final ListView listview = (ListView) findViewById(R.id.booksListView);
-		listview.setAdapter(new BookAdapter(this, books));
+	/**
+	 * 
+	 */
+	private void addListenerOnListViewOnItemClick() {
+		List<Book> books = convertToBooks(DropboxManager.getAllBooks());
+		m_listview = (ListView) findViewById(R.id.booksListView);
+		m_listview.setAdapter(new BookAdapter(this, R.layout.book, books));
 
-		listview.setOnItemClickListener(new OnItemClickListener() {
+		m_listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view,
 					int position, long arg) {
@@ -83,6 +96,36 @@ public class AppActivity extends Activity {
 				int newVisibility = cover.getVisibility() == View.VISIBLE ? View.INVISIBLE
 						: View.VISIBLE;
 				cover.setVisibility(newVisibility);
+			}
+		});
+	}
+
+	/**
+	 * 
+	 */
+	private void addListenerOnSpinnerItemSelection() {
+		Spinner spinner = (Spinner) findViewById(R.id.sortBySpinner);
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long arg) {
+				BookAdapter adapter = (BookAdapter) m_listview.getAdapter();
+
+				switch (position) {
+				case 1:
+					adapter.sort(new BookComparator(BookSortBy.TITLE));
+					break;
+				case 2:
+					adapter.sort(new BookComparator(BookSortBy.DATE));
+					break;
+				default:
+					break;
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
 			}
 		});
 	}

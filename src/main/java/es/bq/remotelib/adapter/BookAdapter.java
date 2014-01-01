@@ -6,7 +6,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import es.bq.remotelib.R;
 import es.bq.remotelib.entity.Book;
@@ -15,13 +15,15 @@ import es.bq.remotelib.entity.Book;
  * 
  * @author Pablo Garcia
  */
-public class BookAdapter extends BaseAdapter {
+public class BookAdapter extends ArrayAdapter<Book> {
 
 	private final Context m_context;
 
 	private final List<Book> m_books;
 
-	public BookAdapter(Context context, List<Book> books) {
+	public BookAdapter(Context context, int textViewResourceId, List<Book> books) {
+		super(context, textViewResourceId, books);
+
 		m_context = context;
 		m_books = books;
 	}
@@ -32,7 +34,7 @@ public class BookAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public Object getItem(int position) {
+	public Book getItem(int position) {
 		return m_books.get(position);
 	}
 
@@ -52,9 +54,11 @@ public class BookAdapter extends BaseAdapter {
 		// ImageView bookCover = (ImageView)
 		// rowView.findViewById(R.id.bookCover);
 		TextView bookTitle = (TextView) rowView.findViewById(R.id.bookTitle);
+		TextView bookDate = (TextView) rowView.findViewById(R.id.bookDate);
 
 		Book book = m_books.get(position);
 		bookTitle.setText(book.getTitle());
+		bookDate.setText(book.getLastModified().toString());
 		// bookCover.setImageResource(book.getCover());
 
 		return rowView;
