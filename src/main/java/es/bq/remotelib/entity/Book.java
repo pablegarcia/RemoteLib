@@ -3,6 +3,7 @@ package es.bq.remotelib.entity;
 import java.util.Date;
 
 /**
+ * This class represents the Book item in this application.
  * 
  * @author Pablo Garcia
  */

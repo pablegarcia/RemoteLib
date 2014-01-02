@@ -1,6 +1,5 @@
 package es.bq.remotelib;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -16,13 +15,13 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.dropbox.client2.android.AndroidAuthSession;
-import com.dropbox.core.DbxEntry;
 
 import es.bq.remotelib.adapter.BookAdapter;
 import es.bq.remotelib.comparator.BookComparator;
 import es.bq.remotelib.entity.Book;
 import es.bq.remotelib.services.DropboxService;
 import es.bq.remotelib.type.BookSortBy;
+import es.bq.remotelib.util.ConvertUtil;
 
 /**
  * Application Entry point class.
@@ -52,14 +51,6 @@ public class AppActivity extends Activity {
 		authenticateToDropbox();
 
 		setContentView(R.layout.books_list);
-	}
-
-	/**
-	 * Called when the activity is becoming visible to the user.
-	 */
-	@Override
-	public void onStart() {
-		super.onStart();
 
 		addListenerOnListViewItemClick();
 		addListenerOnSpinnerItemSelection();
@@ -101,7 +92,8 @@ public class AppActivity extends Activity {
 	 */
 	private void addListenerOnListViewItemClick() {
 		// Convert the list of DropBox Books into app. Books
-		List<Book> books = convertToBooks(DropboxService.getAllBooks());
+		List<Book> books = ConvertUtil.convertToBooks(DropboxService
+				.getAllBooks());
 
 		m_listview = (ListView) findViewById(R.id.booksListView);
 		m_listview.setAdapter(new BookAdapter(this, R.layout.book, books));
@@ -159,20 +151,5 @@ public class AppActivity extends Activity {
 				// TODO Auto-generated method stub
 			}
 		});
-	}
-
-	/**
-	 * 
-	 * @param dropboxBooks
-	 * @return
-	 */
-	private List<Book> convertToBooks(List<DbxEntry> dropboxBooks) {
-		List<Book> books = new ArrayList<Book>();
-		for (DbxEntry book : dropboxBooks) {
-			books.add(new Book(book.name, 1, "", book.asFile().numBytes, book
-					.asFile().lastModified));
-		}
-
-		return books;
 	}
 }

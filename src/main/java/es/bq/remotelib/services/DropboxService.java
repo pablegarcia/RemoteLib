@@ -10,30 +10,40 @@ import com.dropbox.client2.session.AppKeyPair;
 import com.dropbox.client2.session.Session.AccessType;
 import com.dropbox.core.DbxEntry;
 
+import es.bq.remotelib.util.PropertyUtil;
+
 /**
+ * Class used to manage the authentication and transactions over a Dropbox user
+ * account.
  * 
  * @author Pablo Garcia
  */
 public class DropboxService {
 
-	final static private String APP_KEY = "rddb4o3pc51q9k7";
+	final static private String APP_KEY = PropertyUtil.getProperties()
+			.getProperty("dropbox.appkey");
 
-	final static private String APP_SECRET = "izbh3lxkzmb1vef";
+	final static private String APP_SECRET = PropertyUtil.getProperties()
+			.getProperty("dropbox.appsecret");
 
 	final static private AccessType ACCESS_TYPE = AccessType.DROPBOX;
 
 	private DropboxAPI<AndroidAuthSession> m_DBApi;
 
+	/**
+	 * Gets the current Dropbox session.
+	 * 
+	 * @return
+	 */
 	public AndroidAuthSession getDropboxSession() {
 		return m_DBApi.getSession();
 	}
 
 	/**
-	 * 
-	 * 
-	 * @return
+	 * Builds a new Auth. session into Dropbox for this application.
 	 */
 	public void buildDropboxSession() {
+		// Pass all three values to the new DropboxAPI object
 		AppKeyPair appKeys = new AppKeyPair(APP_KEY, APP_SECRET);
 		AndroidAuthSession session = new AndroidAuthSession(appKeys,
 				ACCESS_TYPE);
@@ -41,8 +51,9 @@ public class DropboxService {
 	}
 
 	/**
+	 * Obtains the list of epub files contained in the dropbox file system.
 	 * 
-	 * @return
+	 * @return The list of books.
 	 */
 	public static List<DbxEntry> getAllBooks() {
 		List<DbxEntry> books = new ArrayList<DbxEntry>();
