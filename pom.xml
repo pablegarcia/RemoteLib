@@ -12,10 +12,12 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<android.platform>16</android.platform>
-		
+
 		<android.version>4.1.1.4</android.version>
 		<android.plugin.version>3.6.0</android.plugin.version>
-		<dropbox.version>1.7.5</dropbox.version>
+		<android.dropbox.version>1.5.4</android.dropbox.version>
+		<dropbox.core.version>1.7.5</dropbox.core.version>
+		<json.simple.version>1.1</json.simple.version>
 	</properties>
 
 	<dependencies>
@@ -23,16 +25,31 @@
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
 			<version>${android.version}</version>
-			<scope>provided</scope> 
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Included in local Maven repository -->
+		<dependency>
+			<groupId>es.bq.remotelib</groupId>
+			<artifactId>dropbox-android-sdk</artifactId>
+			<version>${android.dropbox.version}</version>
 		</dependency>
 		
+		<!-- Used from dropbox-android-sdk -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>${json.simple.version}</version>
+		</dependency>
+		
+		<!-- DropBox core lib -->
 		<dependency>
 			<groupId>com.dropbox.core</groupId>
 			<artifactId>dropbox-core-sdk</artifactId>
-			<version>${dropbox.version}</version>
+			<version>${dropbox.core.version}</version>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<finalName>${project.artifactId}</finalName>
 

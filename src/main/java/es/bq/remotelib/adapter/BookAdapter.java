@@ -50,16 +50,15 @@ public class BookAdapter extends ArrayAdapter<Book> {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.book, parent, false);
 
-		// Set data into the view.
-		// ImageView bookCover = (ImageView)
-		// rowView.findViewById(R.id.bookCover);
-		TextView bookTitle = (TextView) rowView.findViewById(R.id.bookTitle);
-		TextView bookDate = (TextView) rowView.findViewById(R.id.bookDate);
-
+		// The book to initialize row data
 		Book book = m_books.get(position);
-		bookTitle.setText(book.getTitle());
+
+		// Set book data into the view.
+		TextView fileName = (TextView) rowView.findViewById(R.id.bookTitle);
+		fileName.setText(book.getFileName());
+
+		TextView bookDate = (TextView) rowView.findViewById(R.id.bookDate);
 		bookDate.setText(book.getLastModified().toString());
-		// bookCover.setImageResource(book.getCover());
 
 		return rowView;
 	}

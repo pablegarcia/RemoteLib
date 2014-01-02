@@ -4,17 +4,11 @@
     <string name="app_name">Remote Library</string>
     <string name="action_settings">Settings</string>
 
-    <!-- Login page strings -->
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-
     <!-- Books list strings -->
     <string name="ebookIcon">eBook Icon</string>
     <string name="bookCover">eBook Cover</string>
  	<string name="books_sortable_prompt">Sort by</string>
     <string-array name="books_sortable_arrays">
-        <item></item>
         <item>Title</item>
         <item>Date</item>
     </string-array>

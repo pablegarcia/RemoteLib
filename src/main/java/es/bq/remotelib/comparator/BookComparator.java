@@ -23,7 +23,7 @@ public class BookComparator implements Comparator<Book> {
 		case DATE:
 			return (book1.getLastModified()).compareTo(book2.getLastModified());
 		case TITLE:
-			return (book1.getTitle()).compareTo(book2.getTitle());
+			return (book1.getFileName()).compareTo(book2.getFileName());
 		default:
 			return 0;
 		}
