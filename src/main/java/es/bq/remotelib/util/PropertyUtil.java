@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import android.util.Log;
+
 /**
  * This class represents the Application Properties utility. It should be used
  * for manage the main properties depending on the compiling environment.
@@ -32,7 +34,8 @@ public class PropertyUtil {
 			// returned
 			properties.load(stream);
 		} catch (IOException exception) {
-			return null;
+			Log.e("Properties",
+					"Error getting properties: " + exception.getMessage());
 		}
 
 		try {
