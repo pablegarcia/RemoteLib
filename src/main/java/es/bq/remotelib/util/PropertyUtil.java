@@ -27,7 +27,7 @@ public class PropertyUtil {
 
 		// Get the transformed properties values as a stream
 		InputStream stream = PropertyUtil.class.getClassLoader()
-				.getResourceAsStream("project.properties");
+				.getResourceAsStream("env.properties");
 
 		try {
 			// Load the stream of properties on the Properties object to be
